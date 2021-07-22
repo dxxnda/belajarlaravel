@@ -115,19 +115,19 @@
                         <li class="nav-item">
                             <a href="{{url('/product')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Nama Kategori</p>
+                                <p>Nama Produk</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{url('/product/create')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Tambah Kategori</p>
+                                <p>Tambah Produk</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{url('/product/update')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Edit Kategori</p>
+                                <p>Edit Produk</p>
                             </a>
                         </li>
                     </ul>
