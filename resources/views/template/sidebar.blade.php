@@ -97,7 +97,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="" class="nav-link">
+                            <a href="{{url('/category/update')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Edit Kategori</p>
                             </a>
@@ -115,21 +115,21 @@
                         <li class="nav-item">
                             <a href="{{url('/product')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Sepatu</p>
-                             </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Tas</p>
+                                <p>Nama Kategori</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="" class="nav-link">
+                            <a href="{{url('/product/create')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Baju</p>
+                                <p>Tambah Kategori</p>
                             </a>
-                        </li>                        
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{url('/product/update')}}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Edit Kategori</p>
+                            </a>
+                        </li>
                     </ul>
                 </li>              
             </ul>
