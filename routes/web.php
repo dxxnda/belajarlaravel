@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
+use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +16,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/adin', function () {
-    return view('welcome');
+    return view('index');
 });
+
+// Route::get('/category', [CategoryController::class, 'index']);
+// Route::post('/category', [CategoryController::class, 'store']);
+// Route::get('/category/create', [CategoryController::class, 'create']);
+// Route::get('/category/{category}/edit', [CategoryController::class, 'edit']);
+// Route::patch('/category/{category}/', [CategoryController::class, 'update']);
+// Route::delete('/category/{category}/', [CategoryController::class, 'destroy']);
+
+Route::resource('category', CategoryController::class);
+Route::resource('product', ProductController::class);
+

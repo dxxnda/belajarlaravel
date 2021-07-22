@@ -14,7 +14,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $kategori = Category::all();
+        return view('category.index', compact('kategori'));
     }
 
     /**
@@ -24,7 +25,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('category.add');
     }
 
     /**
@@ -35,7 +36,22 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+    //    return $request;
+    $request->validate([
+    'kategori'=>'required|min:3|max:25'
+    ],
+    [
+        'kategori.required' => 'Diisi doeloe baru submit sister',
+        'kategori.min' => 'Hei! harus diisi min.3 huruf ',
+        'kategori.max' => 'LIMIT 25 HURUF '
+
+    ]
+    );
+    Category::create([ 
+        'nama' => $request->kategori
+    ]);
+
+    return redirect('/category')->with('status', 'Berhasil Ditambahkan');
     }
 
     /**
@@ -57,7 +73,9 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        // $kategori = Category::where('id',$id)->get();
+        // return $category;
+        return view('category.edit', compact('category'));
     }
 
     /**
@@ -69,7 +87,22 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $request->validate([
+            'kategori'=>'required|min:3|max:25'
+            ],
+            [
+                'kategori.required' => 'Diisi doeloe baru submit sister',
+                'kategori.min' => 'Hei! harus diisi min.3 huruf ',
+                'kategori.max' => 'LIMIT 25 HURUF '
+        
+            ]
+            );
+        Category::where('id',$category->id)->update([
+            'nama' => $request->kategori
+        ]);
+        
+       return redirect('/category')->with('status', 'Berhasil Diubah');
+       
     }
 
     /**
@@ -80,6 +113,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        Category::destroy('id',$category->id);
+        return redirect('/category')->with('status', 'Berhasil Dihapus');
     }
 }
