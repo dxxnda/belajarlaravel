@@ -36,22 +36,30 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-    //    return $request;
-    $request->validate([
-    'kategori'=>'required|min:3|max:25'
-    ],
-    [
-        'kategori.required' => 'Diisi doeloe baru submit sister',
-        'kategori.min' => 'Hei! harus diisi min.3 huruf ',
-        'kategori.max' => 'LIMIT 25 HURUF '
+        //    return $request;
+        $request->validate(
+            [
+                'icon' => 'required',
+                'kategori' => 'required|min:3|max:25'
+            ],
+            [
+                'kategori.required' => 'Diisi doeloe baru submit sister',
+                'kategori.min' => 'Hei! harus diisi min.3 huruf ',
+                'kategori.max' => 'LIMIT 25 HURUF '
 
-    ]
-    );
-    Category::create([ 
-        'nama' => $request->kategori
-    ]);
+            ]
+        );
 
-    return redirect('/category')->with('status', 'Berhasil Ditambahkan');
+        $img = $request->file('icon');
+        $nama_file = time() . "_" . $img->getClientOriginalName();
+        $img->move('dist/img', $nama_file); //proses upload foto kelaravel
+
+        Category::create([
+            'icon' => $nama_file,
+            'nama' => $request->kategori
+        ]);
+
+        return redirect('/category')->with('status', 'Berhasil Ditambahkan');
     }
 
     /**
@@ -87,22 +95,29 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        $request->validate([
-            'kategori'=>'required|min:3|max:25'
+        $request->validate(
+            [
+                'icon' =>'required',
+                'kategori' => 'required|min:3|max:25'
             ],
             [
                 'kategori.required' => 'Diisi doeloe baru submit sister',
                 'kategori.min' => 'Hei! harus diisi min.3 huruf ',
                 'kategori.max' => 'LIMIT 25 HURUF '
-        
+
             ]
-            );
-        Category::where('id',$category->id)->update([
+        );
+        $img = $request->file('icon');
+        $nama_file = time() . "_" . $img->getClientOriginalName();
+        $img->move('dist/img', $nama_file); //proses upload foto kelaravel
+
+        Category::where('id', $category->id)->update([
+            'icon' => $nama_file,
             'nama' => $request->kategori
+           
         ]);
-        
-       return redirect('/category')->with('status', 'Berhasil Diubah');
-       
+
+        return redirect('/category')->with('status', 'Berhasil Diubah');
     }
 
     /**
@@ -113,7 +128,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        Category::destroy('id',$category->id);
+        Category::destroy('id', $category->id);
         return redirect('/category')->with('status', 'Berhasil Dihapus');
     }
 }

@@ -1,0 +1,125 @@
+@media (min-width: 992px) {
+    body {
+        font-family: 'Poppins', sans-serif;
+    }
+    /* @font-face {
+    font-family: 'Poppins';
+    src: url(../font/Poppins-BlackItalic.ttf);
+} */
+    /* #header .navbar-brand {
+    width: 100%;
+} */
+    #banner .bg-banner {
+        background: linear-gradient(269.75deg, #C7D6E2 25.27%, #C9B798 37.2%, #F57C00 99.78%);
+        border-radius: 20px;
+        width: 100%;
+        height: 321px;
+        margin-top: 50px;
+    }
+    #banner .bg-banner h1 {
+        color: white;
+        font-weight: bold;
+    }
+    /* barang terlaris */
+    #barang-terlaris,
+    #rekomendasi,
+    #barang-promo,
+    #footer,
+    #kategori {
+        margin-top: 50px;
+    }
+    #barang-terlaris h3,
+    #rekomendasi h3,
+    #barang-promo h3,
+    #kategori h3 {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 100;
+    }
+    #barang-terlaris span,
+    #rekomendasi span,
+    #barang-promo span,
+    #kategori span {
+        font-weight: bold;
+    }
+    #barang-terlaris .img-terlaris,
+    #barang-promo .img-promo {
+        width: 100%;
+        height: auto;
+    }
+    #barang-terlaris .btn-outline-warning:hover,
+    #rekomendasi .btn-outline-warning:hover,
+    #barang-promo .btn-outline-warning:hover {
+        /* border: none; */
+        color: white;
+    }
+    #barang-terlaris .btn-outline-warning,
+    #rekomendasi .btn-outline-warning,
+    #barang-promo .btn-outline-warning {
+        border-radius: 50px;
+    }
+    /* footer */
+    #footer .container {
+        background-color: #F57C00;
+        width: 100%;
+        border-radius: 10px;
+        height: auto;
+        color: white;
+        margin-bottom: 50px;
+    }
+    #footer h6 {
+        font-weight: 400;
+    }
+    /* kategori */
+    #kategori .bg-kategori {
+        background-color: #EFEFEF;
+    }
+    #kategori a {
+        text-decoration: none;
+        color: black;
+    }
+    /* breadcrumb */
+    /* halaman keranjang */
+    #keranjang {
+        background-color: #E5E5E5;
+        width: 100%;
+        height: auto;
+    }
+    .keranjang .bg-keranjang {
+        background: white;
+        box-shadow: 0px 10px 20px rgba(237, 222, 222, 0.25);
+        border-radius: 25px;
+        width: 100%;
+        height: auto;
+    }
+    .keranjang .bg-keranjang-detail {
+        background: #FFFFFF;
+        width: 100%;
+        height: auto;
+    }
+    .keranjang .bg-keranjang-detail span {
+        float: right;
+    }
+    .keranjang .btn-primary {
+        background: linear-gradient(90deg, #F57C00 2.08%, #887664 100%);
+        border-radius: 10px;
+        border: none;
+    }
+    .keranjang .btn-primary:hover {
+        background: linear-gradient(90deg, #8d5925 2.08%, #c7721d 100%);
+        border-radius: 10px;
+        border: none;
+    }
+    /* produk detail */
+    .ulasan .img-person {
+        width: 100px;
+        height: 100px;
+        border-radius: 100%;
+        object-fit: cover;
+    }
+    .ulasan .fas {
+        color: gold;
+    }
+    .ulasan .far {
+        color: rgb(167, 165, 159);
+    }
+}

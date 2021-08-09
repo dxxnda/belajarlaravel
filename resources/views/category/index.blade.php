@@ -27,6 +27,13 @@
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
+                    <div class="col md-auto">
+                        <a href="{{url('/category/create')}}"
+                        class="btn btn-info btn-sm" role="button">Tambah Kategori</a>
+                    </div>
+
+                </div>
+                <div class="row mt-2">
                     <div class="col">
                         @if(session('status'))
                         <div class="alert alert-primary">
@@ -47,6 +54,7 @@
                                     <thead>
                                         <tr>
                                             <th>No. </th>
+                                            <th>Icon</th>
                                             <th>Nama</th>
                                             <th>Aksi</th>
                                         </tr>
@@ -55,13 +63,13 @@
                                         @foreach ($kategori as $item)
                                             <tr>
                                                 <td>{{ $loop->iteration }} </td>
+                                                <td> <img src="{{asset('dist/img/'.$item->icon)}}" width="40" height="auto" alt=""> </td>
                                                 <td>{{ $item->nama }} </td>
                                                 <td>
-                                                    <a href="{{url('/category/'. $item->id.'/edit')}}">
-                                                        <i class="far fa-edit"></i></a>
-                                                    <form action=" {{url('/category/'.$item->id)}}" method="POST">
+                                                     <a href="{{url('/category/'. $item->id.'/edit')}}"><i class="far fa-edit" role="button"></i></a>
+                                                    <form action=" {{url('/category/'.$item->id)}}" method='POST' class='d-inline'>
                                                         @csrf
-                                                        @method('delete')
+                                                        @method('delete')                                                       
                                                         <button type="submit">
                                                             <i class="far fa-trash-alt"></i>
                                                         </button>

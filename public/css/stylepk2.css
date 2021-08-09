@@ -1,0 +1,251 @@
+@media (min-width: 992px) {  
+
+head{
+    padding-top: 50px;
+   
+}
+/* HEADER */
+#header .img-logobar{
+    width: 100%;
+    height: 50px;
+}
+
+.fa-home{
+    color: #F57C00;
+
+}
+
+/* AKHIR HEADER */
+body{
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+#banner .bg-banner{
+    background: linear-gradient(269.75deg, #C7D6E2 25.27%, #C9B798 37.2%, #F57C00 99.78%);
+    border-radius: 20px;
+    width: 100%;
+    height: 321px;
+    left: 101px;
+    top: 1580px;
+}
+
+
+#banner .bg-banner h1{
+    color: white;
+    font-weight: bold;
+}
+/* kategori */
+#kategori{
+    font-family: "NotoSans", sans-serif;
+    font-weight: 100;
+}
+#banner .bg-kategori{
+    background-color: #EFEFEF;
+    width: 100%;
+    height: auto;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-radius: 20px;
+}
+/* akhir kategori */
+#terlaris{
+    font-family: "NotoSans", sans-serif;
+    font-weight: 100;
+      }
+
+#terlaris .img-terlaris {
+          width: 100%;
+          height: auto;
+      }
+
+#footer .container{
+    background-color: #F57C00;
+    margin-top: 100px;
+    border-radius: 20px;
+    width: 100%;
+    height: 300px;
+    color: white;
+}
+
+#footer h6{
+    font-weight: 400;
+}
+
+/* Halaman keranjang */
+#keranjangall{
+    background-color: #fff8f8;
+}
+#keranjangall .fa-home{
+    color: #F57C00;
+}
+#keranjangall .breadcrumb{
+    background-color:#fff8f8;
+}
+
+body{
+    background-color: #e05050 ; 
+    padding-top: 100px;
+    padding-bottom: 100px;
+    font-family: "NotoSans", sans-serif;
+    font-weight: 100;
+}
+
+
+head{
+    background-color: #E5E5E5;
+}
+
+/* detailsproduct */
+    #detailsproduct .btn-outline-warning{
+        float: right;
+    }
+    #detailsproduct .img-canon1{
+        width: 100%;
+        height: 300px;
+    }
+
+    #detailsproduct h6{
+        background-color:  #F8F5ED;
+        border-radius: 5px;
+        width: 100%;
+        height: auto;
+        margin-top: 40px;
+        padding-top: 20px;
+    padding-bottom: 20px;
+    padding-right: 15px;
+    padding-left: 15px;
+    }
+
+    /* ulasan */
+    #ulasan h4{
+        margin-top: 4px;
+        margin-left: 40px;
+    }
+    #ulasan h5{
+        margin-left: 40px;
+    }
+    #ulasan .star{
+        margin-left: 40px;
+    }
+   
+    #ulasan .fas{
+        color: gold;
+    }
+
+    #ulasan .far{
+        color: gold;
+    }
+    
+    /* akhir ulasan */
+
+    /* promo hari ini */
+    #promohariini h4{
+        margin-top: 4px;
+    }
+
+    #promohariini .img-promo {
+            width: 100%;
+            height: auto;
+            margin-top: 10px;
+    }
+    /* akhir promo hari ini */
+/* akhir detailsproduct */
+
+/* keranjang */
+
+    #keranjang{
+        font-family: "NotoSans", sans-serif;
+        font-weight: 100;
+    }
+    /* #keranjang .img-headset{
+        width: 100%;
+        height: 200px;
+    } */
+
+    #keranjang .alamat h6{
+        float: right;   
+    }
+
+    #keranjang .bg-keranjang{
+        background-color: #ffffff;
+        width: 100%;
+        height: auto; 
+        box-shadow: 0px 10px 20px rgba(237, 222, 222, 0.25);
+        border-radius: 10px;
+        padding-bottom: 15px;
+    }
+
+    #keranjang .bg-keranjang-detail{
+        background-color: rgb(255, 255, 255);
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+        box-shadow: 0px 10px 20px rgba(237, 222, 222, 0.25);
+    }
+
+    #keranjang .bg-keranjang-detail span{
+                float: right;
+    }
+
+    #keranjang .btn-primary{
+        background: linear-gradient(90deg, #F57C00 2.08%, #887664 100%);
+        width: 100%;
+    }
+    #promo .img-terlaris {
+        width: 100%;
+        height: auto;
+    }
+ 
+
+/* batas keranjang */
+
+/* payment */
+#payment{
+    background-color:#fff8f8 ;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+#payment .batas{
+    font-family: "NotoSans", sans-serif;
+    font-weight: 30;
+    background-color: #ffffff;
+    box-shadow: 0px 10px 10px rgba(248, 141, 141, 0.3);
+    border-radius: 10px;
+    width: 100%;
+    height: 80px;
+    padding-bottom: 20px;  
+}
+/* akhir payment */
+
+/* success */
+#success .btn-warning{
+    color: white;
+    width: 274px;
+    height: 56px;
+    background: #F57C00;
+    border-radius: 10px;
+    border: none;
+}
+/* akhir success */
+
+/* footer */
+    #footer .container{
+    background-color: #F57C00;
+    margin-top: 100px;
+    border-radius: 20px;
+    width: 100%;
+    height: 300px;
+    color: white;
+    padding-bottom: 10px;
+    }
+/* akhir footer */
+/* ANIMATE */
+#terlaris .animateterlarisup{
+    display: inline-block;
+    margin: 0 0.5rem;
+    animation: slideInUp;
+    animation-duration: 1s;
+}
+
+}

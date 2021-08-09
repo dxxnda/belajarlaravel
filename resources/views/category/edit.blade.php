@@ -13,7 +13,8 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Category Name</li>
+                            <li class="breadcrumb-item"><a href="{{url('/category')}}">Kategori</a></li>
+                            <li class="breadcrumb-item active">Edit  Kategori</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -31,10 +32,15 @@
                                 <h3 class="card-title">Edit <strong>Kategori</strong></h3>
                             </div>
                           
-                            <form action="{{url('/category/'.$category->id)}}" method="POST">
+                            <form action="{{url('/category/'.$category->id)}}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 @method('patch')
                                 <div class="card-body">
+                                    
+                                        <div class="form-group">
+                                            <label for="icon">Icon</label>
+                                            <input type="file" class="form-control-file" name="icon" id="icon">
+                                        </div>
                                     <div class="form-group">
                                         <label for="kategori">Nama Kategori</label>
                                         <input type="text" name="kategori" class="form-control @error('kategori') is-invalid @enderror" id="kategori"

@@ -1,0 +1,45 @@
+/* css internal */
+/* body{
+    background-color: #E5E5E5;
+} */
+
+
+.synac{
+    background: linear-gradient(to right, rgba(179, 113, 207, 0), rgba(223, 103, 217, 0)), url(/assets./logooo.png);
+    background-position: center;
+    background-size: cover;
+    width: 100%; 
+    height: 250px;
+    text-align: center;
+    margin-top: 100px;
+    border-radius: 50px;
+    box-shadow: 5px 5px 5px 5px rgba(245, 124, 124, 0.616);
+
+}
+
+.synac button {
+    background-color: rgb(241, 150, 150);
+    padding: 10px;
+}
+
+#konten1 .btn-danger:hover{
+    background: linear-gradient(to right, rgba(255, 0, 0, 0.555), rgba(255, 255, 255, 0.103));
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px 5px rgba(238, 217, 217, 0.692), red;
+}
+
+#banner .bg-banner {
+    background: linear-gradient (269.75deg, #C7D6E2 25.27%, #C9B798 37.2%, #F57C00 99.78%);
+    border-radius: 20px;
+    width: 100%;
+    height: 321px;
+    margin-top: 100px;
+}
+
+#landingpage {
+    background: linear-gradient (269.75deg, #C7D6E2 25.27%, #C9B798 37.2%, #F57C00 99.78%);
+    border-radius: 20px;
+    width: 100%;
+    height: 321px;
+    margin-top: 100px;
+}
