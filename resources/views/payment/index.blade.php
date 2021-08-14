@@ -6,17 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PasarKito - Bootstrap</title>
 
-    <link rel="stylesheet" href="./css/stylepk2.css">
+    <link rel="stylesheet" href="{{ asset ('css/stylepk2.css')}}">
 
 
     <!-- mobile css -->
-    <link rel="stylesheet" href="./css/mobile.css">
+    <link rel="stylesheet" href="{{ asset ('css/mobile.css')}}">
 
     <!-- owl -->
     <!-- bootstrap css -->
-    <link rel="stylesheet" href="./css/bootstrap.css">
-    <link rel="stylesheet" href="./owlcarousel/assets/owl.carousel.min.css">
-    <link rel="stylesheet" href="./owlcarousel/assets/owl.theme.default.min.css">
+    <link rel="stylesheet" href="{{ asset ('css/bootstrap.css')}}">
+    <link rel="stylesheet" href="{{ asset ('owlcarousel/assets/owl.carousel.min.css')}}">
+    <link rel="stylesheet" href="{{ asset ('owlcarousel/assets/owl.theme.default.min.css')}}">
 
 </head>
 
@@ -112,9 +112,9 @@
     </section>
 
     <!-- my javascript -->
-    <script src="./js/jquery.min.js"></script>
-    <script src="./owlcarousel/owl.carousel.min.js"></script>
-    <script src="./js/bootstrap.bundle.js"></script>
+    <script src="{{asset ('js/jquery.min.js')}} "></script>
+    <script src="{{asset ('owlcarousel/owl.carousel.min.js')}} "></script>
+    <script src="{{asset ('js/bootstrap.bundle.js')}} "></script>
     <!-- icon font awesome -->
     <script src="https://kit.fontawesome.com/b0b240269b.js" crossorigin="anonymous"></script>
 
