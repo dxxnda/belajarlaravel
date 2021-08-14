@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Number;
 use App\Models\Cart;
 use App\Models\Product;
 use App\Models\Kurir;
@@ -19,12 +20,16 @@ class CartController extends Controller
      */
     public function index()
     {
+        $number = Number::where('id', 1)->get();
+        $angka = ($number[0]->angka)+1;
+        $date = date('dmY');
+        $invoice = "INV-PK-$date-$angka";
         $cart = Cart::all();
         // return $cart;
         $subtotal = Cart::where('status', 0)->sum('total');
-        // $kurir = Kurir::all();
-        // $bank = Bank::all();
-        return view('keranjang.index', compact('cart', 'subtotal'));
+        $kurir = Kurir::all();
+        $bank = Bank::all();
+        return view('keranjang.index', compact('cart', 'subtotal', 'kurir', 'bank'));
     }
 
     /**
@@ -111,6 +116,7 @@ class CartController extends Controller
      */
     public function destroy(Cart $cart)
     {
-        //
+        Cart::destroy('id', $cart->id);
+        return redirect('/cart')->with('status', 'Berhasil Dihapus');
     }
 }

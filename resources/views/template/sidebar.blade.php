@@ -104,7 +104,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{url('/product')}}" class="nav-link">
+                            <a href="{{url('/cart')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Nama Produk</p>
                             </a>
