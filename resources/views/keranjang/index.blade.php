@@ -1,64 +1,8 @@
-{{-- @dd($cart) --}}
-<!DOCTYPE html>
-<html lang="en">
+@extends('template_frontend.master')
+@section('title', 'keranjang')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Keranjang Pasar Kito</title>
-
-    <link rel="stylesheet" href="./css/stylepk2.css">
-
-
-    <!-- mobile css -->
-    <link rel="stylesheet" href="./css/mobile.css">
-
-    <!-- owl -->
-    <!-- bootstrap css -->
-    <link rel="stylesheet" href="./css/bootstrap.css">
-    <link rel="stylesheet" href="./owlcarousel/assets/owl.carousel.min.css">
-    <link rel="stylesheet" href="./owlcarousel/assets/owl.theme.default.min.css">
-
-</head>
-
-<body>
-    <!-- bar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-
-
-            <a class="navbar-brand mt-2" href="#"><img class="logobar" src="./assets/logobar.png" alt=""
-                    width="200px"></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <div class="col-lg-6 mt-2">
-                    <input class="form-control" type="text" placeholder="Belanjo Apo Hari ini ..."
-                        aria-label="default input example">
-                </div>
-                <div class="col mt-2">
-                    <img src="./assets/cart.png" alt="cart">
-                </div>
-                <div class="col mt-2">
-                    <img src="./assets/notif.png" alt="">
-                </div>
-                <div class="col mt-2">
-                    <button type="button" class="btn btn-outline-warning form-control">Register</button>
-                </div>
-                <div class="col m-2">
-                    <button type="button" class="btn btn-warning form-control">Login</button>
-                </div>
-            </div>
-
-        </div>
-    </nav>
-    <!-- akhir bar -->
-    <!-- akhir bar -->
+@section('content')
+<body>   
     <section id="keranjangall">
 
         <!--AWAL BREADCRUMBS  -->
@@ -128,7 +72,9 @@
 
                     <div class="col-lg-5">
                         <div class="bg.keranjangdetail">
-                            <form>
+                        <form method="POST" action="{{url ('/transaction')}} ">
+                            @csrf
+                            <input type="hidden" id="subtotal" name="subtotal" value="{{$subtotal}}">
                                 <div class="form-group">
                                     <label for="alamat">Alamat</label>
                                     <input type="text" class="form-control" id="alamat" name="alamat"
@@ -155,10 +101,10 @@
                                         </select>                                        
                                     </span></h6>
                                     <hr>
-                                    <h6>Subtotal<span><b>IDR</b>{{ $subtotal }} </span></h6>
+                                    <h6>Subtotal<span>{{$subtotal}} </span></h6>
                                     <hr>
                                     <div class="d-grid gap-2">
-                                        <button class="btn btn-primary" type="button">Pesan Sekarang</button>
+                                        <button class="btn btn-primary" type="submit">Pesan Sekarang</button>
                                     </div>
                                 </div>
                             </form>
@@ -185,149 +131,32 @@
                     <br>
                     <br>
                 </div>
-                <div class="row text-center">
-                    <div class="owl-carousel owl-theme promohariini">
-                        <div class="col mt-3">
-                            <div class="card" style="width: 100%;">
-                                <img class="img-terlaris" src="./assets/sepatu1.png" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h4 class="card-title">Canon Fix</h4>
-                                    <p class="card-text">IDR 850.000</p>
-                                    <a href="#" class="btn-outline-warning form-control">Lihat Barang</a>
+                <div class="container">
+                    <div class="owl-terlaris">
+                        <div class="row text-center">
+                            @foreach ($promo as $item)
+                                <div class="col-lg-4 mt-3 text-center">
+                                    <div class="card" style="width: 100%;">
+                                        <img class="img-terlaris" style="width: 100%; height: 200px; object-fit: cover;"
+                                            src="{{ asset('dist/img/' . $item->photo->nama_photo) }}" class="card-img-top"
+                                            alt="...">
+                                        <div class="card-body">
+                                            <h4 class="card-title">{{ $item->nama_barang }}</h4>
+                                            <p class="card-text">{{ $item->harga_barang }}</p>
+                                            <a href="{{ url('/detail/' . $item->id) }}"
+                                                class="btn-outline-warning form-control">Lihat
+                                                Barang</a>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
+                            @endforeach
                         </div>
-                        <div class="col mt-3">
-                            <div class="card" style="width: 100%;">
-                                <img class="img-terlaris" src="./assets/sepatu1.png" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">Canon Fix</h5>
-                                    <p class="card-text">IDR 850.000</p>
-                                    <a href="#" class="btn-outline-warning form-control">Lihat Barang</a>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="col mt-3">
-                            <div class="card" style="width: 100%;">
-                                <img class="img-terlaris" src="./assets/sepatu1.png" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">Canon Fix</h5>
-                                    <p class="card-text">IDR 850.000</p>
-                                    <a href="#" class="btn-outline-warning form-control">Lihat Barang</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col mt-3">
-                            <div class="card" style="width: 100%;">
-                                <img class="img-terlaris" src="./assets/sepatu1.png" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">Canon Fix</h5>
-                                    <p class="card-text">IDR 850.000</p>
-                                    <a href="#" class="btn-outline-warning form-control">Lihat Barang</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-        </section>
-        <!-- promo hariini -->
-
-        <!-- footer -->
-        <section id="footer">
-            <div class="container">
-                <div class="row pt-4 pl-4">
-                    <div class="col-lg-5">
-                        <img src="./assets/logopkfooter.png" alt="logo">
-                        <p>Sebagai Pusat Fashion Online di palembang, kami menciptakan gaya tanpa batas dengan cara
-                            memperluas jangkauan produk, mulai dari produk internasional hingga produk lokal
-                            dambaan.</p>
-
-                    </div>
-                    <div class="col-lg-2">
-                        <h4>Layanan</h4>
-                        <h6>Cara Pembelian</h6>
-                        <h6>Barang Terlaris</h6>
-                        <h6>Promo hari ini </h6>
-                        <h6>Status Order</h6>
-                    </div>
-                    <div class="col-lg-2">
-                        <h4>Tentang Kami</h4>
-                        <h6>About Us</h6>
-                        <h6>Persyaratan & Ketentuan</h6>
-                        <h6>Kebijakan Privasi</h6>
-                    </div>
-                    <div class="col-lg-2">
-                        <h4>Kantor Pusat</h4>
-                        <h6>Jl. Rajawali No. 11 Ilir Timur 11440 Indonesia</h6>
-                    </div>
-
-                </div>
-                <hr style="border-color: white;">
-                <div class="row">
-                    <div class="col-lg-9">
-                        <h6>Copyright c 2020 SynaStore , All Right Reserved </h6>
-                    </div>
-                    <div class="col-lg-1">
-                        <img src="./assets/./ig.png" alt="ig">
-                    </div>
-                    <div class="col-lg-1">
-                        <img src="./assets/tweet.png" alt="tweet">
-                    </div>
-                    <div class="col-lg-1">
-                        <img src="./assets/fb.png" alt="fb">
                     </div>
                 </div>
             </div>
-
         </section>
-
+        <!-- promo hariini -->
     </section>
 
-
-    <!-- my javascript -->
-    <script src="./js/jquery.min.js"></script>
-    <script src="./owlcarousel/owl.carousel.min.js"></script>
-    <script src="./js/bootstrap.bundle.js"></script>
-    <script src="./js/myscript.js"></script>
-
-    <!-- icon font awesome -->
-    <script src="https://kit.fontawesome.com/b0b240269b.js" crossorigin="anonymous"></script>
-
-    <script>
-        $(".owl-carousel").owlCarousel({
-            loop: true,
-            margin: 10,
-            nav: true,
-            responsive: {
-                0: {
-                    items: 1
-                },
-                600: {
-                    items: 3
-                },
-                1000: {
-                    items: 1
-                }
-            }
-        })
-    </script>
-
-</body>
-
-<!-- 
-                        <div class="col">
-                            <p>ID Transaksi</p>
-
-                        </div>
-                        <div class="col text-right">
-                            <p>#SH12000</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <p>ID Transak123si</p>
-
-                    </div>
-                    <div class="col text-right">
-                        <p>#SH112132000</p>
-                    </div> -->
+@endsection
+        

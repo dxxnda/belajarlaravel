@@ -20,16 +20,17 @@ class CartController extends Controller
      */
     public function index()
     {
-        $number = Number::where('id', 1)->get();
-        $angka = ($number[0]->angka)+1;
-        $date = date('dmY');
-        $invoice = "INV-PK-$date-$angka";
-        $cart = Cart::all();
-        // return $cart;
-        $subtotal = Cart::where('status', 0)->sum('total');
+        $cart = Cart::where('status', 0)->where('user_id', Auth::user()->id)->get();
+        $subtotal = Cart::where('status', 0)->sum('subtotal');
         $kurir = Kurir::all();
         $bank = Bank::all();
-        return view('keranjang.index', compact('cart', 'subtotal', 'kurir', 'bank'));
+        $number = Number::where('id', 1)->get();
+        $angka = ($number[0]->angka) + 1;
+        $date = date('dmY');
+        $invoice = "INV-PK-$date-$angka";
+        $promo = Product::where('promo', 1)->get();
+        // return $cart;
+        return view('keranjang.index', compact('cart', 'subtotal', 'kurir', 'bank', 'promo'));
     }
 
     /**
@@ -63,17 +64,31 @@ class CartController extends Controller
 
         $product = Product::where('id', $request->product_id)->get();
         $total = $product[0]->harga_barang * $request->qty;
+        $keranjang = Cart::where('user_id', Auth::user()->id)
+        ->where('status', 0)->get();
+
+        foreach ($keranjang as $item) 
+        {
+            if ($request->product_id == $item->product_id)
+             {
+                 $product = Product::where('id', $item->product_id)->first();
+                Cart::where('product_id', $item->product_id)->update([
+                    'qty' => $item->qty + $request->qty,
+                    'subtotal' => $product->harga_barang * ($item->qty + $request->qty)
+                ]);
+                return redirect()->back();
+            }
+        }
 
         Cart::create([
             'user_id' => Auth::user()->id,
             'product_id' => $request->product_id,
             'qty' => $request->qty,
-            'total' => $total,
+            'subtotal' => $total,
             'status' => 0
         ]);
-        return redirect('/cart')->with('status', 'Berhasil Ditambahkan');
+        return redirect()->back();
     }
-
     /**
      * Display the specified resource.
      *

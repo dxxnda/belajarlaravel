@@ -16,8 +16,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $produk = Product::all();
+        $produk = Product::all(); 
         return view('product.index', compact('produk'));
+
     }
 
     /**
@@ -192,6 +193,30 @@ class ProductController extends Controller
 
         return redirect('/product')->with('status', 'Berhasil Diubah');  
     }
+
+    public function promo(Product $product){
+        // if($product->promo==1){
+        //     $promo=0;
+        // }
+        // else{
+        //     $promo=1;
+        // }
+        $promo=$product->promo==1 ? 0:1;
+        Product::where('id', $product->id)->update(['promo'=>$promo]);
+        return redirect()->back();
+    }
+    public function rekomendasi(Product $product){
+        // if($product->rekomendasi==1){
+        //     $rekomendasi=0;
+        // }
+        // else{
+        //     $rekomendasi=1;
+        // }
+        $rekomendasi=$product->rekomendasi==1 ? 0:1;
+        Product::where('id', $product->id)->update(['rekomendasi'=>$rekomendasi]);
+        return redirect()->back();
+    }
+   
 }
 
 

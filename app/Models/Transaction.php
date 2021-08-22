@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Transaction extends Model
 {
-    protected $fillable = ['kurir_id', 'bank_id', 'number_id', 'no_invoice'];
+    protected $fillable = ['kurir_id', 'bank_id', 'no_invoice', 'alamat', 'total'];
     use HasFactory;
 
     public function kurir(){

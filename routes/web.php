@@ -8,6 +8,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\BankController;
+use App\Http\Controllers\TransactionController;
+use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -45,6 +47,8 @@ Route::group(['middleware' => ['auth', 'super']], function(){
     Route::post('/productPhoto', [ProductController::class, 'storePhoto']);
     Route::get('/home', [HomeController::class, 'index']);
     Route::resource('bank', BankController::class);
+    Route::get('/promo/{product}', [ProductController::class, 'promo']);
+    Route::get('/rekomendasi/{product}', [ProductController::class, 'rekomendasi']);
     // Route::get('state', StateController::class);
     // Route::get('city', CityController::class);
 });
@@ -60,5 +64,7 @@ Route::get('/detail/{product}', [LandingController::class, 'detail']);
 //keranjang
 Route::group(['middleware' => ['authcustomer', 'customer']], function(){
     Route::resource('cart', CartController::class);
+    Route::get('/transaction/sukses', [TransactionController::class, 'sukses']);
+    Route::resource('transaction', TransactionController::class);
 });
 
