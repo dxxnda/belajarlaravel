@@ -49,6 +49,8 @@ Route::group(['middleware' => ['auth', 'super']], function(){
     Route::resource('bank', BankController::class);
     Route::get('/promo/{product}', [ProductController::class, 'promo']);
     Route::get('/rekomendasi/{product}', [ProductController::class, 'rekomendasi']);
+    Route::get('/transaction', [TransactionController::class, 'index']);
+    Route::get('/paid/{transaction}', [TransactionController::class, 'paid']);
     // Route::get('state', StateController::class);
     // Route::get('city', CityController::class);
 });
@@ -65,6 +67,6 @@ Route::get('/detail/{product}', [LandingController::class, 'detail']);
 Route::group(['middleware' => ['authcustomer', 'customer']], function(){
     Route::resource('cart', CartController::class);
     Route::get('/transaction/sukses', [TransactionController::class, 'sukses']);
-    Route::resource('transaction', TransactionController::class);
+    Route::resource('transaction', TransactionController::class)->except('index');
 });
 

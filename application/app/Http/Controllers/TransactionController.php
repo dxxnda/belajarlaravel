@@ -7,9 +7,11 @@ use App\Models\Transaction;
 use App\Models\Notification;
 use App\Models\Number;
 use App\Models\Product;
+use App\Mail\KirimEmail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class TransactionController extends Controller
 {
@@ -20,7 +22,8 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        //
+        $transaction = Transaction::all();
+        return view('transaction.index', compact('transaction'));
     }
 
     /**
@@ -61,7 +64,9 @@ class TransactionController extends Controller
             'kurir_id' => $request->kurir,
             'bank_id' => $request->bank,
             'alamat' => $request->alamat,
-            'total' => $request->subtotal
+            'total' => $request->subtotal,
+            'status_transaksi' => 'unpaid',
+            'user_id' => Auth::user()->id
         ]);
 
         $ongkir = DB::table('kurirs')
@@ -88,11 +93,9 @@ class TransactionController extends Controller
                 ]);
             }
 
-            Cart::where('user_id', Auth::user()->id)
+            $keranjang= Cart::where('user_id', Auth::user()->id)
             ->where('status', 0)
-            ->update([
-                'status' => 1
-            ]);
+            ->get();
 
             $nama = Auth::user()->name;
 
@@ -100,6 +103,25 @@ class TransactionController extends Controller
                 'user_id' => Auth::user()->id,
                 'isi' => 'Hai '. $nama.', Silahkan Selesaikan Pembayaran '.$transaction->total.' dengan kode '.$transaction->no_invoice.' BELUM DIBAYAR.'
             ]);
+
+            $isi = [
+                'invoice' => $transaction->no_invoice, 
+                'nama' => $nama,
+                'alamat' => $transaction->alamat,
+                'bank' => $transaction->bank->nama_bank,
+                'no_rek' => $transaction->bank->no_rek,
+                'keranjang' => $keranjang,
+                'ongkir' => $transaction->kurir->ongkir,
+                'total' => $transaction->total
+            ];
+            Mail::to(Auth::user()->email)->send(new \App\Mail\KirimEmail($isi));
+
+            Cart::where('user_id', Auth::user()->id)
+            ->where('status', 0)
+            ->update([
+                'status' => 1
+            ]);
+
         return redirect('/transaction/' .$transaction->id)->with('status', 'Berhasil Ditambahkan');
     }
 
@@ -135,8 +157,19 @@ class TransactionController extends Controller
      */
     public function update(Request $request, Transaction $transaction)
     {
-        //
+        $img = $request->file('struk');
+        $nama_file = time() . "_" . $img->getClientOriginalName();
+        $img->move('public/dist/img', $nama_file); //proses upload foto kelaravel
+       
+        Transaction::where('id',$transaction->id)
+        ->update
+        ([
+            'struk' => $nama_file,
+        ]);
+
+        return redirect('/');  
     }
+    
 
     /**
      * Remove the specified resource from storage.
@@ -152,5 +185,10 @@ class TransactionController extends Controller
     public function sukses()
     {
         return view('payment/success');
+    }
+    public function paid(Transaction $transaction){
+        $status=$transaction->status_transaksi=='unpaid' ? 'paid':'unpaid';
+        Transaction::where('id', $transaction->id)->update(['status_transaksi'=>$status]);
+        return redirect()->back();
     }
 }

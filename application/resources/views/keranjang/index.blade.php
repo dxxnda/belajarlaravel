@@ -61,7 +61,7 @@
                                        <form action="{{url ('/cart/'.$item->id)}}" method="POST">
                                         @csrf 
                                         @method('delete')
-                                        <button type="submit"><img src="./assets/delete.png" alt="">
+                                    <button type="submit"><img src="{{asset ('assets/delete.png')}}" alt="">
                                     </button>
                                     </form>
                                     </div>

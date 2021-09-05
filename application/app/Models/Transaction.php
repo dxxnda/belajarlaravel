@@ -7,13 +7,20 @@ use Illuminate\Database\Eloquent\Model;
 
 class Transaction extends Model
 {
-    protected $fillable = ['kurir_id', 'bank_id', 'no_invoice', 'alamat', 'total'];
+    protected $fillable = ['user_id', 'kurir_id', 'bank_id', 'no_invoice', 'alamat', 'total', 'struk', 'status_transaksi'];
     use HasFactory;
 
-    public function kurir(){
+    public function kurir()
+    {
         return $this->belongsTo('App\Models\Kurir');
     }
-    public function bank(){
+    public function bank()
+    {
         return $this->belongsTo('App\Models\Bank');
     }
+    public function user(){
+        return $this->belongsTo('App\Models\User');
+
+    }
+    
 }
