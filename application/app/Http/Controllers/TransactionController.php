@@ -101,7 +101,8 @@ class TransactionController extends Controller
 
             Notification::create([
                 'user_id' => Auth::user()->id,
-                'isi' => 'Hai '. $nama.', Silahkan Selesaikan Pembayaran '.$transaction->total.' dengan kode '.$transaction->no_invoice.' BELUM DIBAYAR.'
+                'isi' => 'Hai '. $nama.', Silahkan Selesaikan Pembayaran '.$transaction->total.' dengan kode '.$transaction->no_invoice.' BELUM DIBAYAR.',
+                'title' => 'Silahkan Lakukan Pembayaran'
             ]);
 
             $isi = [
@@ -189,6 +190,29 @@ class TransactionController extends Controller
     public function paid(Transaction $transaction){
         $status=$transaction->status_transaksi=='unpaid' ? 'paid':'unpaid';
         Transaction::where('id', $transaction->id)->update(['status_transaksi'=>$status]);
+        $nama = $transaction->user->name;
+        Notification::create([
+            'user_id' => $transaction->user_id,
+            'isi' => 'Hai '. $nama.', Pembayaran telah diverifikasi, mohon ditunggu pesanan kamu. '.$transaction->total.' dengan kode '.$transaction->no_invoice.' BELUM DIBAYAR.',
+            'title' => 'Pembayaran telah diverifikasi.'
+        ]);
+        $keranjang= Cart::where('user_id', $transaction->user->id)
+            ->where('status', 0)
+            ->get();
+
+        $isi = [
+            'invoice' => $transaction->no_invoice, 
+            'nama' => $nama,
+            'alamat' => $transaction->alamat,
+            'bank' => $transaction->bank->nama_bank,
+            'no_rek' => $transaction->bank->no_rek,
+            'keranjang' => $keranjang,
+            'ongkir' => $transaction->kurir->ongkir,
+            'total' => $transaction->total
+        ];
+        Mail::to($transaction->user->email)->send(new \App\Mail\KirimEmail($isi));
+
         return redirect()->back();
     }
+
 }

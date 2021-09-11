@@ -98,6 +98,7 @@
                 <a href="{{ url('/cart') }}">
                     <img src="{{ asset('assets/cart.png') }}" alt="cart">
                     @if (Auth::user())
+
                         @if (Keranjang::hitung() > 0)
                             <sup><span class="badge badge-warning">{{ Keranjang::hitung() }}</span></sup>
                         @endif
@@ -106,17 +107,11 @@
             </div>
             <div class="col mt-2">
                 @if (Auth::user())
-                    <div id="notif"> <img src="{{ asset('assets/notif.png') }}" alt="">
-                    </div>
-                    <div class="notification" id="box">
-                        {{-- @foreach (Keranjang::isi() as $item)
-                            <div class="notification-item">
-                                <div class="text">
-                                    <p>{{ $item->isi }}</p>
-                                </div>
-                            </div>
-                        @endforeach --}}
-                    </div>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-link" data-toggle="modal" data-target="#exampleModal">
+                        <div id="notif"> <img src="{{ asset('assets/notif.png') }}" width="23px" alt="">
+                        </div>
+                    </button>
                     @if (Keranjang::notif() > 0)
                         <sup><span class="badge badge-warning">{{ Keranjang::notif() }}</span></sup>
                     @endif
@@ -183,6 +178,36 @@
     </div>
 </div>
 <!-- akhir modallogin -->
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Notifikasi</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @if (Auth::user ())
+                @foreach (Keranjang::isi() as $item)
+                    <h5>{{$item->title}} </h5>
+                    <p>
+                        {{ $item->isi }}
+                    </p>
+                    <hr>
+                @endforeach
+                    
+                @endif
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+{{-- akhir modal --}}
 
 <!-- awak modalregister -->
 <div class="modal fade" id="modalregister" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
